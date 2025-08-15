@@ -1,0 +1,323 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(230 30% 8%);
+  --foreground: hsl(220 20% 90%);
+  --card: hsl(258 20% 12%);
+  --card-foreground: hsl(220 20% 90%);
+  --popover: hsl(258 20% 12%);
+  --popover-foreground: hsl(220 20% 90%);
+  --primary: hsl(258 89% 66%);
+  --primary-foreground: hsl(0 0% 100%);
+  --secondary: hsl(230 89% 66%);
+  --secondary-foreground: hsl(0 0% 100%);
+  --muted: hsl(280 60% 20%);
+  --muted-foreground: hsl(220 15% 70%);
+  --accent: hsl(258 50% 25%);
+  --accent-foreground: hsl(258 89% 66%);
+  --destructive: hsl(0 84% 60%);
+  --destructive-foreground: hsl(0 0% 100%);
+  --border: hsl(258 30% 25%);
+  --input: hsl(258 20% 12%);
+  --ring: hsl(258 89% 66%);
+  --chart-1: hsl(258 89% 66%);
+  --chart-2: hsl(230 89% 66%);
+  --chart-3: hsl(50 100% 85%);
+  --chart-4: hsl(142 71% 45%);
+  --chart-5: hsl(325 70% 75%);
+  --sidebar: hsl(258 20% 12%);
+  --sidebar-foreground: hsl(220 20% 90%);
+  --sidebar-primary: hsl(258 89% 66%);
+  --sidebar-primary-foreground: hsl(0 0% 100%);
+  --sidebar-accent: hsl(258 50% 25%);
+  --sidebar-accent-foreground: hsl(258 89% 66%);
+  --sidebar-border: hsl(258 30% 25%);
+  --sidebar-ring: hsl(258 89% 66%);
+  --font-sans: Inter, system-ui, sans-serif;
+  --font-serif: Georgia, serif;
+  --font-mono: 'JetBrains Mono', Consolas, monospace;
+  --radius: 0.75rem;
+
+  /* Galaxy Theme Colors */
+  --galaxy-purple: hsl(258 89% 66%);
+  --galaxy-blue: hsl(230 89% 66%);
+  --galaxy-pink: hsl(325 70% 75%);
+  --galaxy-dark-purple: hsl(258 50% 25%);
+  --galaxy-deep-space: hsl(230 30% 8%);
+  --galaxy-cosmic: hsl(258 20% 12%);
+  --galaxy-nebula: hsl(280 60% 20%);
+  --galaxy-star: hsl(50 100% 85%);
+  --galaxy-text: hsl(220 20% 90%);
+  --galaxy-muted: hsl(220 15% 70%);
+  --galaxy-border: hsl(258 30% 25%);
+  --galaxy-green: hsl(142 71% 45%);
+  --galaxy-yellow: hsl(48 96% 53%);
+  --galaxy-red: hsl(0 84% 60%);
+}
+
+.dark {
+  --background: var(--galaxy-deep-space);
+  --foreground: var(--galaxy-text);
+  --card: var(--galaxy-cosmic);
+  --card-foreground: var(--galaxy-text);
+  --popover: var(--galaxy-nebula);
+  --popover-foreground: var(--galaxy-text);
+  --primary: var(--galaxy-purple);
+  --primary-foreground: hsl(0 0% 100%);
+  --secondary: var(--galaxy-blue);
+  --secondary-foreground: hsl(0 0% 100%);
+  --muted: var(--galaxy-nebula);
+  --muted-foreground: var(--galaxy-muted);
+  --accent: var(--galaxy-dark-purple);
+  --accent-foreground: var(--galaxy-purple);
+  --destructive: var(--galaxy-red);
+  --destructive-foreground: hsl(0 0% 100%);
+  --border: var(--galaxy-border);
+  --input: var(--galaxy-cosmic);
+  --ring: var(--galaxy-purple);
+  --chart-1: var(--galaxy-purple);
+  --chart-2: var(--galaxy-blue);
+  --chart-3: var(--galaxy-star);
+  --chart-4: var(--galaxy-green);
+  --chart-5: var(--galaxy-pink);
+  --sidebar: var(--galaxy-cosmic);
+  --sidebar-foreground: var(--galaxy-text);
+  --sidebar-primary: var(--galaxy-purple);
+  --sidebar-primary-foreground: hsl(0 0% 100%);
+  --sidebar-accent: var(--galaxy-dark-purple);
+  --sidebar-accent-foreground: var(--galaxy-purple);
+  --sidebar-border: var(--galaxy-border);
+  --sidebar-ring: var(--galaxy-purple);
+  --font-sans: Inter, system-ui, sans-serif;
+  --font-serif: Georgia, serif;
+  --font-mono: 'JetBrains Mono', Consolas, monospace;
+  --radius: 0.75rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+    background: radial-gradient(ellipse at center, hsl(258 30% 15%) 0%, hsl(230 30% 8%) 70%);
+    min-height: 100vh;
+    position: relative;
+  }
+
+  /* Galaxy background with animated stars */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    background: 
+      radial-gradient(2px 2px at 20px 30px, var(--galaxy-star), transparent),
+      radial-gradient(2px 2px at 40px 70px, var(--galaxy-star), transparent),
+      radial-gradient(1px 1px at 90px 40px, var(--galaxy-star), transparent),
+      radial-gradient(1px 1px at 130px 80px, var(--galaxy-star), transparent),
+      radial-gradient(2px 2px at 160px 30px, var(--galaxy-star), transparent),
+      radial-gradient(1px 1px at 180px 10px, var(--galaxy-star), transparent),
+      radial-gradient(2px 2px at 10px 80px, var(--galaxy-star), transparent),
+      radial-gradient(1px 1px at 120px 60px, var(--galaxy-star), transparent);
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    animation: sparkle 8s linear infinite, driftStars 25s linear infinite;
+    opacity: 0.8;
+  }
+
+  /* Galaxy nebula effect */
+  body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: 
+      radial-gradient(ellipse at 20% 50%, hsla(258, 89%, 66%, 0.15) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, hsla(230, 89%, 66%, 0.15) 0%, transparent 60%),
+      radial-gradient(ellipse at 40% 80%, hsla(325, 70%, 75%, 0.08) 0%, transparent 60%),
+      radial-gradient(ellipse at 70% 60%, hsla(142, 71%, 45%, 0.05) 0%, transparent 50%);
+    animation: galaxyShift 20s ease-in-out infinite alternate, nebulaFlow 35s linear infinite;
+  }
+}
+
+/* Galaxy Theme Utilities */
+.bg-galaxy-purple { background-color: var(--galaxy-purple); }
+.bg-galaxy-blue { background-color: var(--galaxy-blue); }
+.bg-galaxy-pink { background-color: var(--galaxy-pink); }
+.bg-galaxy-green { background-color: var(--galaxy-green); }
+.bg-galaxy-yellow { background-color: var(--galaxy-yellow); }
+.bg-galaxy-red { background-color: var(--galaxy-red); }
+.bg-galaxy-cosmic { background-color: var(--galaxy-cosmic); }
+.bg-galaxy-nebula { background-color: var(--galaxy-nebula); }
+.bg-galaxy-deep-space { background-color: var(--galaxy-deep-space); }
+
+.text-galaxy-purple { color: var(--galaxy-purple); }
+.text-galaxy-blue { color: var(--galaxy-blue); }
+.text-galaxy-pink { color: var(--galaxy-pink); }
+.text-galaxy-green { color: var(--galaxy-green); }
+.text-galaxy-yellow { color: var(--galaxy-yellow); }
+.text-galaxy-red { color: var(--galaxy-red); }
+.text-galaxy-text { color: var(--galaxy-text); }
+.text-galaxy-muted { color: var(--galaxy-muted); }
+
+.border-galaxy-border { border-color: var(--galaxy-border); }
+
+.hover\:bg-galaxy-cosmic:hover { background-color: var(--galaxy-cosmic); }
+.hover\:bg-galaxy-nebula:hover { background-color: var(--galaxy-nebula); }
+
+/* Custom animations for Galaxy theme */
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 0.4;
+    filter: brightness(1);
+  }
+  25% {
+    opacity: 0.8;
+    filter: brightness(1.5);
+  }
+  50% {
+    opacity: 1;
+    filter: brightness(2);
+  }
+  75% {
+    opacity: 0.8;
+    filter: brightness(1.5);
+  }
+}
+
+@keyframes driftStars {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+  25% {
+    transform: translateX(10px) translateY(-5px);
+  }
+  50% {
+    transform: translateX(-5px) translateY(10px);
+  }
+  75% {
+    transform: translateX(15px) translateY(5px);
+  }
+  100% {
+    transform: translateX(0) translateY(0);
+  }
+}
+
+@keyframes galaxyShift {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(3deg) scale(1.05);
+  }
+  100% {
+    transform: rotate(5deg) scale(1.1);
+  }
+}
+
+@keyframes nebulaFlow {
+  0% {
+    transform: translateX(0) rotate(0deg);
+    filter: hue-rotate(0deg);
+  }
+  33% {
+    transform: translateX(20px) rotate(2deg);
+    filter: hue-rotate(60deg);
+  }
+  66% {
+    transform: translateX(-10px) rotate(-1deg);
+    filter: hue-rotate(120deg);
+  }
+  100% {
+    transform: translateX(0) rotate(0deg);
+    filter: hue-rotate(0deg);
+  }
+}
+
+@keyframes pulse-galaxy {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+.animate-pulse-galaxy {
+  animation: pulse-galaxy 2s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Glass morphism effects */
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-card {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Enhanced button styles */
+.btn-galaxy {
+  background: linear-gradient(135deg, var(--galaxy-purple) 0%, var(--galaxy-blue) 100%);
+  border: none;
+  color: white;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-galaxy::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.btn-galaxy:hover::before {
+  left: 100%;
+}
+
+.btn-galaxy:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
